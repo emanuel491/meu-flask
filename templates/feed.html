@@ -32,3 +32,13 @@
         <div class="card-body">{{ p.conteudo }}</div>
         <div class="card-footer">
             <a href="/curtir/{{ p.id }}" class="{{ 'curtido' if p.curtiu else '' }}">
+                ❤️ {{ p.curtidas }} curtidas
+            </a>
+        </div>
+    </div>
+    {% else %}
+    <p style="text-align:center; color:#999; margin-top:40px;">Nenhum post ainda. Seja o primeiro!</p>
+    {% endfor %}
+</div>
+</body>
+</html>

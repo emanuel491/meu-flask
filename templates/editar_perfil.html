@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Perfil</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<nav>
+    <span class="logo">Instaflask</span>
+    <div>
+        <a href="/feed">Feed</a>
+        <a href="/usuarios">Pessoas</a>
+        <a href="/perfil/{{ user }}">Perfil</a>
+        <a href="/logout">Sair</a>
+    </div>
+</nav>
+<div class="container" style="max-width:480px;">
+    <div class="card" style="padding:24px; margin-top:30px;">
+        <h2 style="margin-bottom:16px;">Editar Perfil</h2>
+        <form method="POST">
+            <textarea name="bio" rows="4" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px; font-size:14px;" placeholder="Escreva sua bio...">{{ bio }}</textarea>
+            <button class="btn btn-primary" style="margin-top:12px; width:100%;">Salvar</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

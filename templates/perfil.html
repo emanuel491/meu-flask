@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil - {{ perfil.username }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<nav>
+    <span class="logo">Instaflask</span>
+    <div>
+        <a href="/feed">Feed</a>
+        <a href="/usuarios">Pessoas</a>
+        <a href="/perfil/{{ user }}">Perfil</a>
+        <a href="/logout">Sair</a>
+    </div>
+</nav>
+<div class="container">
+    <div class="perfil-header">
+        <div class="avatar-lg">{{ perfil.username[0] }}</div>
+        <div class="perfil-info">
+            <h2>{{ perfil.username }}</h2>
+            <p>{{ perfil.bio or 'Sem bio ainda.' }}</p>
+            <div class="perfil-stats">
+                <div><span>{{ posts|length }}</span> posts</div>
+                <div><span>{{ seguidores }}</span> seguidores</div>
+                <div><span>{{ seguindo }}</span> seguindo</div>
+            </div>
+            <div style="margin-top:12px; display:flex; gap:8px;">
+            {% if perfil.username == user %}
+                <a href="/editar_perfil" class="btn btn-secondary">Editar perfil</a>
+            {% else %}
+                <a href="/seguir/{{ perfil.id }}" class="btn {{ 'btn-secondary' if ja_segue else 'btn-primary' }}">
+                    {{ 'Deixar de seguir' if ja_segue else 'Seguir' }}
+                </a>
+            {% endif %}
+            </div>
+        </div>
+    </div>
