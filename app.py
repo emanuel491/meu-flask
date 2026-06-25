@@ -28,31 +28,4 @@ with sqlite3.connect("usuarios.db") as conn:
 def home():
     return redirect("/login")
 
-@app.route("/cadastro", methods=["GET", "POST"])
-def cadastro():
-    if request.method == "POST":
-        user = request.form["username"]
-        senha = generate_password_hash(request.form["password"])
-        try:
-            with sqlite3.connect("usuarios.db") as conn:
-                conn.execute("INSERT INTO users (username, password) VALUES (?, ?)", (user, senha))
-            return redirect("/login")
-        except:
-            return render_template("cadastro.html", erro="Usuário já existe")
-    return render_template("cadastro.html")
-
-@app.route("/login", methods=["GET", "POST"])
-def login():
-    if request.method == "POST":
-        user = request.form["username"]
-        senha = request.form["password"]
-        with sqlite3.connect("usuarios.db") as conn:
-            data = conn.execute("SELECT id, password FROM users WHERE username=?", (user,)).fetchone()
-        if data and check_password_hash(data[1], senha):
-            session["user"] = user
-            session["user_id"] = data[0]
-            return redirect("/feed")
-        return render_template("login.html", erro="Login inválido")
-    return render_template("login.html")
-
-@app.rout
+@
